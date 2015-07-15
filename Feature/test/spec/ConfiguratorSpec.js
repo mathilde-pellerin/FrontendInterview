@@ -1,38 +1,30 @@
 describe('Configurator', function () {
 
-    var configurator;
+    var configurator,
+        queryEngine;
 
     beforeEach(function () {
-        configurator = new bur.Configurator(
-            new bur.ConfigurationBasicQuery(testHelpers.vehicles)
-        );
+        queryEngine = new bur.ConfigurationBasicQuery();
+
+        sinon.stub(queryEngine, 'getAvailableType', function () {});
+
+        configurator = new bur.Configurator(queryEngine);
     });
 
-    describe('querying', function () {
-        it('should return me all available grades for bodyStyle 3door', function () {
-            var grades = configurator.getAvailableType('grade', '3door');
+    afterEach(function () {
+        queryEngine.getAvailableType.restore();
+    });
 
-            expect(grades[0]).toEqual('basic');
-            expect(grades[1]).toEqual('mid');
-            expect(grades[2]).toEqual('high');
-            expect(grades[3]).toEqual('sport');
-        });
+    it('should call getAvailableType on the query engine', function () {
+        var queryCall,
+            type = 'grade',
+            bodyStyleId = '3door';
 
-        it('should return me all available grades for bodyStyle 5door', function () {
-            var grades = configurator.getAvailableType('grade', '5door');
+        configurator.getAvailableType(type, bodyStyleId);
 
-            expect(grades.length).toEqual(3);
-            expect(grades[0]).toEqual('mid');
-            expect(grades[1]).toEqual('high');
-            expect(grades[2]).toEqual('sport');
-        });
+        queryCall = queryEngine.getAvailableType.firstCall;
 
-        it('should return me all available engines for bodyStyle wag', function () {
-            var engines = configurator.getAvailableType('engine', 'wag');
-
-            expect(engines.length).toEqual(2);
-            expect(engines[0]).toEqual('1petrol');
-            expect(engines[1]).toEqual('2petrol');
-        });
+        expect(queryCall.args[0]).toEqual('grade');
+        expect(queryCall.args[1]).toEqual('3door');
     });
 });
