@@ -2,25 +2,13 @@ module.exports = function (config) {
 
     config.set({
 
-        basePath: 'Sencha/',
+        basePath: './',
 
         frameworks: ['jasmine'],
 
         files: [
-            {pattern: '../node_modules/**/*.js',included: false},
-            /*'touch/sencha-touch-all-debug.js',*/
-            '.sencha/app/microloader/development.js',
-            'tests/Setup.js',
-            //{pattern: 'app/**/*.js',included: true},
-            'tests/**/*.js'
-            // {pattern: 'tests/**/*.js',included: true}
-        ],
-
-        proxies: {
-            '/': 'http://localhost:9999/Sencha/'
-        },
-
-        exclude: [
+            'app/**/*.js',
+            'test/spec/**/*Spec.js'
         ],
 
         reporters: ['progress'],
@@ -33,14 +21,7 @@ module.exports = function (config) {
 
         autoWatch: true,
 
-        browsers: ['chrome_without_security'],
-
-        customLaunchers: {
-            chrome_without_security: {
-                base: "Chrome",
-                flags: ["--disable-web-security"]
-            }
-        },
+        browsers: ['PhantomJS'],
 
         captureTimeout: 6000,
 
