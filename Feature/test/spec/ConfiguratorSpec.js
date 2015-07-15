@@ -3,7 +3,9 @@ describe('Configurator', function () {
     var configurator;
 
     beforeEach(function () {
-        configurator = new bur.Configurator(testHelpers.vehicles);
+        configurator = new bur.Configurator(
+            new bur.ConfigurationBasicQuery(testHelpers.vehicles)
+        );
     });
 
     describe('querying', function () {
