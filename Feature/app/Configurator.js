@@ -19,7 +19,7 @@ bur.Configurator = (function () {
             var vehicle = self.vehicleData[mscCode];
 
             if (vehicle.bodyStyle === bodyStyleId) {
-                addUniqueToArray(vehicle.grade, items);
+                addUniqueToArray(vehicle[type], items);
             }
         });
 
