@@ -8,6 +8,7 @@ module.exports = function (config) {
 
         files: [
             'app/**/*.js',
+            'test/lib/vehicle_data.js',
             'test/spec/**/*Spec.js'
         ],
 
