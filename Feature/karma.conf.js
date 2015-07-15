@@ -7,6 +7,7 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 
         files: [
+            'app/namespace.js',
             'app/**/*.js',
             'test/lib/vehicle_data.js',
             'test/spec/**/*Spec.js'
