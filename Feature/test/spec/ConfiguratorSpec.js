@@ -53,5 +53,31 @@ describe('Configurator', function () {
 
       stateEngine.getCurrent.restore();
     });
+
+    it('should request a new configuration and set the result configuration to the state engine', function () {
+      var newConfig = {},
+          currentConfig = {},
+          value = 'white',
+          type = 'color';
+
+      sinon.stub(queryEngine, 'getConfigurationWith', function () {
+        return newConfig;
+      });
+      sinon.stub(stateEngine, 'getCurrent', function () {
+        return currentConfig;
+      });
+      sinon.stub(stateEngine, 'update', function () {});
+
+      configurator.applyItem(value, type);
+
+      expect(queryEngine.getConfigurationWith.firstCall.args[0]).toEqual(value);
+      expect(queryEngine.getConfigurationWith.firstCall.args[1]).toEqual(type);
+      expect(queryEngine.getConfigurationWith.firstCall.args[2]).toEqual(currentConfig);
+      expect(stateEngine.update.firstCall.args[0]).toEqual(newConfig);
+
+      queryEngine.getConfigurationWith.restore();
+      stateEngine.getCurrent.restore();
+      stateEngine.update.restore();
+    });
   });
 });

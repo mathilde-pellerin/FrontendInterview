@@ -11,12 +11,18 @@ bur.Configurator = (function () {
     self.stateEngine.update(self.queryEngine.getInitialConfiguration());
   }
 
-  Configurator.prototype.getAvailableTypes = function (type, bodyStyleId) {
-    return this.queryEngine.getAvailableTypes(type, bodyStyleId);
+  Configurator.prototype.getAvailableTypes = function (typeId, bodyStyleId) {
+    return this.queryEngine.getAvailableTypes(typeId, bodyStyleId);
   };
 
   Configurator.prototype.getConfiguration = function () {
     return this.stateEngine.getCurrent();
+  };
+
+  Configurator.prototype.applyItem = function (itemId, typeId) {
+    this.stateEngine.update(
+        this.queryEngine.getConfigurationWith(itemId, typeId, this.stateEngine.getCurrent())
+    );
   };
 
   return Configurator;
