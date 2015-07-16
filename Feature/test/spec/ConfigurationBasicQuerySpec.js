@@ -38,9 +38,15 @@ describe('ConfigurationBasicQuery', function () {
         });
 
         it('should return the a clone of vehicle 112 when querying a vehicle with grade mid', function () {
-            var newConfig = queryEngine.getConfigurationWith('mid', testHelpers.vehicles[0]);
+            var newConfig = queryEngine.getConfigurationWith('mid', 'grade', testHelpers.vehicles[0]);
 
             expect(newConfig.msc).toEqual('112');
+        });
+
+        it('should return the a clone of vehicle 114 when querying a vehicle with grade sport', function () {
+            var newConfig = queryEngine.getConfigurationWith('sport', 'grade', testHelpers.vehicles[0]);
+
+            expect(newConfig.msc).toEqual('114');
         });
     });
 });

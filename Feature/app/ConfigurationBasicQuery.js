@@ -20,8 +20,18 @@ bur.ConfigurationBasicQuery = (function () {
         return items;
     };
 
-    ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValue, configurationObj) {
-        return this.vehicleData[1];
+    ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValue, type, configurationObj) {
+        var i,
+            vehicleObj,
+            numberOfVehicles = this.vehicleData.length;
+
+        for (i = 0; i < numberOfVehicles; i += 1) {
+            vehicleObj = this.vehicleData[i];
+
+            if (vehicleObj !== configurationObj && vehicleObj[type] === newValue) {
+                return vehicleObj;
+            }
+        }
     };
 
     return ConfigurationBasicQuery;
