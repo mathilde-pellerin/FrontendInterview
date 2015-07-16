@@ -1,3 +1,5 @@
 (function (global) {
-  global.bur = {};
+  global.bur = {
+    settings: {}
+  };
 }(window));
