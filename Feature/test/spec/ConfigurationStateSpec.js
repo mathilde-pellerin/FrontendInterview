@@ -41,5 +41,25 @@ describe('ConfigurationState', function () {
 
             expect(stateEngine.getCurrent()).toEqual(config);
         });
+
+        it('should return the last configuration as the current state', function () {
+            var config1 = {},
+                config2 = {};
+
+            stateEngine.update(config1);
+            stateEngine.update(config2);
+
+            expect(stateEngine.getCurrent()).toEqual(config2);
+        });
+
+        it('should return the first configuration as the initial state', function () {
+            var config1 = {},
+                config2 = {};
+
+            stateEngine.update(config1);
+            stateEngine.update(config2);
+
+            expect(stateEngine.getInitial()).toEqual(config1);
+        });
     });
 });

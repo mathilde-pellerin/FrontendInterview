@@ -12,6 +12,10 @@ bur.ConfigurationState = (function () {
         return this.history[this.history.length -1];
     };
 
+    ConfigurationState.prototype.getInitial = function () {
+        return this.history[0];
+    };
+
     ConfigurationState.prototype.update = function (configurationObj) {
         bur.Utils.addUniqueToArray(configurationObj, this.history);
     };
