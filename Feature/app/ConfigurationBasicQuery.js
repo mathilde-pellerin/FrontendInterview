@@ -28,22 +28,6 @@ bur.ConfigurationBasicQuery = (function () {
     return matchingVehicleObj;
   }
 
-  ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
-    return this.vehicleData.mscs[0];
-  };
-
-  ConfigurationBasicQuery.prototype.getAvailableTypes = function (typeId, bodyStyleId) {
-    var items = [];
-
-    this.vehicleData.mscs.forEach(function (vehicleObj) {
-      if (vehicleObj.bodyStyle === bodyStyleId) {
-        bur.Utils.addUniqueToArray(vehicleObj[typeId], items);
-      }
-    });
-
-    return items;
-  };
-
   function getIndexOfMsc(mscStr, vehicles) {
     var i,
         numberOfVehicles = vehicles.length;
@@ -63,6 +47,22 @@ bur.ConfigurationBasicQuery = (function () {
 
     return startingVehicles.concat(clonedVehicles);
   }
+
+  ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
+    return this.vehicleData.mscs[0];
+  };
+
+  ConfigurationBasicQuery.prototype.getAvailableTypes = function (typeId, bodyStyleId) {
+    var items = [];
+
+    this.vehicleData.mscs.forEach(function (vehicleObj) {
+      if (vehicleObj.bodyStyle === bodyStyleId) {
+        bur.Utils.addUniqueToArray(vehicleObj[typeId], items);
+      }
+    });
+
+    return items;
+  };
 
   ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValueId, typeId, configurationObj) {
     var i,
