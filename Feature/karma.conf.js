@@ -13,6 +13,10 @@ module.exports = function (config) {
             'test/spec/**/*Spec.js'
         ],
 
+        preprocessors: {
+            'app/**/*.js': ['coverage']
+        },
+
         reporters: ['progress'],
 
         port: 9111,
