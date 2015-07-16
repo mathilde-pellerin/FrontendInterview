@@ -64,5 +64,17 @@ describe('ConfigurationBasicQuery', function () {
       expect(newConfig.msc).toEqual('111');
       expect(newConfig.color).toEqual(newColor);
     });
+
+    it('should return the a clone of vehicle 114 querying a vehicle with grade sport from msc 222', function () {
+      var newConfig = queryEngine.getConfigurationWith('sport', 'grade', testHelpers.vehicle.mscs[8]);
+
+      expect(newConfig.msc).toEqual('114');
+    });
+
+    it('should return the a clone of vehicle 122 querying a vehicle with grade high from msc 121', function () {
+      var newConfig = queryEngine.getConfigurationWith('high', 'grade', testHelpers.vehicle.mscs[4]);
+
+      expect(newConfig.msc).toEqual('122');
+    });
   });
 });

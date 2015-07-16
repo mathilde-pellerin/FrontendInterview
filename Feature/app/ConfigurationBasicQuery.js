@@ -44,14 +44,35 @@ bur.ConfigurationBasicQuery = (function () {
     return items;
   };
 
+  function getIndexOfMsc(mscStr, vehicles) {
+    var i,
+        numberOfVehicles = vehicles.length;
+
+    for (i = 0; i < numberOfVehicles; i += 1) {
+      if (mscStr === vehicles[i].msc) {
+        return i;
+      }
+    }
+  }
+
+  function getVehiclesToBeSearched(vehicles, configurationObj) {
+    var numberOfVehicles = vehicles.length,
+        clonedVehicles = vehicles.slice(0),
+        startingIndex = getIndexOfMsc(configurationObj.msc, clonedVehicles),
+        startingVehicles = clonedVehicles.splice(startingIndex, numberOfVehicles - startingIndex);
+
+    return startingVehicles.concat(clonedVehicles);
+  }
+
   ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValueId, typeId, configurationObj) {
     var i,
         matchingVehicleObj,
-        numberOfVehicles = this.vehicleData.mscs.length;
+        sortedVehicles = getVehiclesToBeSearched(this.vehicleData.mscs, configurationObj),
+        numberOfVehicles = sortedVehicles.length;
 
     for (i = 0; i < numberOfVehicles; i += 1) {
       matchingVehicleObj = getVehicleWithMatchingProperties(
-          bur.Utils.shallowCloneObject(this.vehicleData.mscs[i]),
+          bur.Utils.shallowCloneObject(sortedVehicles[i]),
           newValueId, typeId, configurationObj
       );
 
