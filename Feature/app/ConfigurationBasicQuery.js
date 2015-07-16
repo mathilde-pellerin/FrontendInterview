@@ -9,15 +9,11 @@ bur.ConfigurationBasicQuery = (function () {
     };
 
     ConfigurationBasicQuery.prototype.getAvailableType = function (type, bodyStyleId) {
-        var self = this,
-            mscCodes = Object.keys(this.vehicleData),
-            items = [];
+        var items = [];
 
-        mscCodes.forEach(function (mscCode) {
-            var vehicle = self.vehicleData[mscCode];
-
-            if (vehicle.bodyStyle === bodyStyleId) {
-                bur.Utils.addUniqueToArray(vehicle[type], items);
+        this.vehicleData.forEach(function (vehicleObj) {
+            if (vehicleObj.bodyStyle === bodyStyleId) {
+                bur.Utils.addUniqueToArray(vehicleObj[type], items);
             }
         });
 
