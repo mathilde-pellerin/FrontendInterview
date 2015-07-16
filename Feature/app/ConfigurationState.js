@@ -20,6 +20,14 @@ bur.ConfigurationState = (function () {
         bur.Utils.addUniqueToArray(configurationObj, this.history);
     };
 
+    ConfigurationState.prototype.resetTo = function (configurationObj) {
+        var configIndex = this.history.indexOf(configurationObj);
+
+        if (configIndex > -1 && this.getCurrent() !== configurationObj) {
+            this.history = this.history.splice(0, configIndex + 1);
+        }
+    };
+
     return ConfigurationState;
 
 }());
