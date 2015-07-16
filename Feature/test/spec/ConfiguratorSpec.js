@@ -31,7 +31,7 @@ describe('Configurator', function () {
     });
 
     describe('configuration changes', function () {
-        var initialConfig = testHelpers.vehicles['111'];
+        var initialConfig = testHelpers.vehicles[0];
 
         beforeEach(function () {
             sinon.stub(queryEngine, 'getInitialConfiguration', function () {
