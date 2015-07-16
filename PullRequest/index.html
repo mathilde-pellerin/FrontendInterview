@@ -5,6 +5,7 @@
 		<title>AngularJS • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+    		<link rel="stylesheet" href="css/main.css">
 		<style>[ng-cloak] { display: none; }</style>
 	</head>
 	<body>
@@ -23,6 +24,7 @@
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCompleted(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+              <button class="button-wip">WIP</button>
 							<button class="destroy" ng-click="removeTodo(todo)"></button>
 						</div>
 						<form ng-submit="doneEditing(todo)">
