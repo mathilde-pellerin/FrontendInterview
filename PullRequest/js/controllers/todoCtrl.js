@@ -14,7 +14,11 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
 	$scope.location = $location;
 
 	$scope.$watch('location.path()', function (path) {
-		$scope.statusFilter = { '/active': {completed: false}, '/completed': {completed: true} }[path];
+		$scope.statusFilter = { 
+      '/active': {completed: false}, 
+      '/completed': {completed: true},
+      '/wip': {wip: true}
+     }[path];
 	});
 
 	$scope.$watch('remainingCount == 0', function (val) {
@@ -74,7 +78,6 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
     }
 
     console.log(todo.wip);
-
 		todoStorage.put(todos);
 	};
 
