@@ -4,6 +4,10 @@ bur.ConfigurationBasicQuery = (function () {
         this.vehicleData = vehicleData;
     }
 
+    ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
+
+    };
+
     ConfigurationBasicQuery.prototype.getAvailableType = function (type, bodyStyleId) {
         var self = this,
             mscCodes = Object.keys(this.vehicleData),
