@@ -40,6 +40,7 @@ describe('ConfigurationBasicQuery', function () {
         it('should return the a clone of vehicle 112 when querying a vehicle with grade mid', function () {
             var newConfig = queryEngine.getConfigurationWith('mid', 'grade', testHelpers.vehicles[0]);
 
+            expect(testHelpers.vehicles[1]).not.toBe(newConfig);
             expect(newConfig.msc).toEqual('112');
         });
 
@@ -47,6 +48,14 @@ describe('ConfigurationBasicQuery', function () {
             var newConfig = queryEngine.getConfigurationWith('sport', 'grade', testHelpers.vehicles[0]);
 
             expect(newConfig.msc).toEqual('114');
+        });
+
+        it('should return the a clone of vehicle 111 with color blue querying a vehicle with color blue', function () {
+            var newColor = 'blue',
+                newConfig = queryEngine.getConfigurationWith(newColor, 'color', testHelpers.vehicles[0]);
+
+            expect(newConfig.msc).toEqual('111');
+            expect(newConfig.color).toEqual(newColor);
         });
     });
 });

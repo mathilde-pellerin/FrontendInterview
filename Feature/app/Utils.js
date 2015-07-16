@@ -8,6 +8,19 @@ bur.Utils = (function () {
         }
     };
 
+    Utils.shallowCloneObject = function (obj) {
+        var property,
+            cloneObj = {};
+
+        for (property in obj) {
+            if (obj.hasOwnProperty(property)) {
+                cloneObj[property] = obj[property];
+            }
+        }
+
+        return cloneObj;
+    };
+
     return Utils;
 
 }());
