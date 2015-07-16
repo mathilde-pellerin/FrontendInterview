@@ -5,7 +5,7 @@ bur.ConfigurationBasicQuery = (function () {
     }
 
     ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
-
+        return this.vehicleData[0];
     };
 
     ConfigurationBasicQuery.prototype.getAvailableType = function (type, bodyStyleId) {

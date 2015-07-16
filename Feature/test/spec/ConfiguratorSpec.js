@@ -2,19 +2,24 @@ describe('Configurator', function () {
 
     var configurator,
         queryEngine,
-        stateEngine;
+        stateEngine,
+        initialConfig = testHelpers.vehicles[0];
 
     beforeEach(function () {
         queryEngine = new bur.ConfigurationBasicQuery();
         stateEngine = new bur.ConfigurationState();
 
         sinon.stub(queryEngine, 'getAvailableType', function () {});
+        sinon.stub(queryEngine, 'getInitialConfiguration', function () {
+            return initialConfig;
+        });
 
         configurator = new bur.Configurator(queryEngine, stateEngine);
     });
 
     afterEach(function () {
         queryEngine.getAvailableType.restore();
+        queryEngine.getInitialConfiguration.restore();
     });
 
     it('should call getAvailableType on the query engine', function () {
@@ -32,16 +37,6 @@ describe('Configurator', function () {
 
     describe('configuration changes', function () {
         var initialConfig = testHelpers.vehicles[0];
-
-        beforeEach(function () {
-            sinon.stub(queryEngine, 'getInitialConfiguration', function () {
-                return initialConfig;
-            });
-        });
-
-        afterEach(function () {
-            queryEngine.getInitialConfiguration.restore();
-        });
 
         it('should the first vehicle in the list as the initial state', function () {
             var currentConfig;

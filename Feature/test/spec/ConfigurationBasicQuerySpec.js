@@ -32,5 +32,9 @@ describe('ConfigurationBasicQuery', function () {
             expect(engines[0]).toEqual('1petrol');
             expect(engines[1]).toEqual('2petrol');
         });
+
+        it('should return the first vehicle in the list 111 as the initial configuration', function () {
+            expect(queryEngine.getInitialConfiguration().msc).toEqual('111');
+        })
     });
 });
