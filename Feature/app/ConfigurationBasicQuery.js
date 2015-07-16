@@ -20,6 +20,10 @@ bur.ConfigurationBasicQuery = (function () {
         return items;
     };
 
+    ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValue, configurationObj) {
+        return this.vehicleData[1];
+    };
+
     return ConfigurationBasicQuery;
 
 }());

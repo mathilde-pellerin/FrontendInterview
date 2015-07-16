@@ -35,6 +35,12 @@ describe('ConfigurationBasicQuery', function () {
 
         it('should return the first vehicle in the list 111 as the initial configuration', function () {
             expect(queryEngine.getInitialConfiguration().msc).toEqual('111');
-        })
+        });
+
+        it('should return the a clone of vehicle 112 when querying a vehicle with grade mid', function () {
+            var newConfig = queryEngine.getConfigurationWith('mid', testHelpers.vehicles[0]);
+
+            expect(newConfig.msc).toEqual('112');
+        });
     });
 });
