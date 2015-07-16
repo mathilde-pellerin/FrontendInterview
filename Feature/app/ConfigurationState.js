@@ -9,7 +9,7 @@ bur.ConfigurationState = (function () {
     };
 
     ConfigurationState.prototype.update = function (configurationObj) {
-        this.history.push(configurationObj);
+        bur.Utils.addUniqueToArray(configurationObj, this.history);
     };
 
     return ConfigurationState;
