@@ -5,7 +5,7 @@ Resources for Burrows Front-end team in Interviews.
 Code writing test for a basic configurator.
 **Tooling:**  
 * Karma
-* Jasmine
+* Jasmine  
 **Running:**  
 * ```cd`` into your project DIR and run ```npm install```.
 * Run ```karma start``` you should have 24 passing tests *(at time of writing)*.
