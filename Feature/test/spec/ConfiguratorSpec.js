@@ -3,7 +3,7 @@ describe('Configurator', function () {
     var configurator,
         queryEngine,
         stateEngine,
-        initialConfig = testHelpers.vehicles[0];
+        initialConfig = testHelpers.vehicle.mscs[0];
 
     beforeEach(function () {
         queryEngine = new bur.ConfigurationBasicQuery();
@@ -36,8 +36,6 @@ describe('Configurator', function () {
     });
 
     describe('configuration changes', function () {
-        var initialConfig = testHelpers.vehicles[0];
-
         it('should the first vehicle in the list as the initial state', function () {
             var currentConfig;
 

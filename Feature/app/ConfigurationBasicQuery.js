@@ -29,13 +29,13 @@ bur.ConfigurationBasicQuery = (function () {
     }
 
     ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
-        return this.vehicleData[0];
+        return this.vehicleData.mscs[0];
     };
 
     ConfigurationBasicQuery.prototype.getAvailableType = function (type, bodyStyleId) {
         var items = [];
 
-        this.vehicleData.forEach(function (vehicleObj) {
+        this.vehicleData.mscs.forEach(function (vehicleObj) {
             if (vehicleObj.bodyStyle === bodyStyleId) {
                 bur.Utils.addUniqueToArray(vehicleObj[type], items);
             }
@@ -47,11 +47,11 @@ bur.ConfigurationBasicQuery = (function () {
     ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValue, type, configurationObj) {
         var i,
             matchingVehicleObj,
-            numberOfVehicles = this.vehicleData.length;
+            numberOfVehicles = this.vehicleData.mscs.length;
 
         for (i = 0; i < numberOfVehicles; i += 1) {
             matchingVehicleObj = getVehicleWithMatchingProperties(
-                bur.Utils.shallowCloneObject(this.vehicleData[i]),
+                bur.Utils.shallowCloneObject(this.vehicleData.mscs[i]),
                 newValue, type, configurationObj
             );
 
