@@ -29,6 +29,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
 
 		todos.push({
 			title: newTodo,
+      wip: false,
 			completed: false
 		});
 		todoStorage.put(todos);
@@ -62,6 +63,18 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
 	$scope.removeTodo = function (todo) {
 		$scope.remainingCount -= todo.completed ? 0 : 1;
 		todos.splice(todos.indexOf(todo), 1);
+		todoStorage.put(todos);
+	};
+  
+  $scope.toggleWipOnTodo = function (todo) {
+    if(todo.wip) {
+      todo.wip = false;
+    } else {
+      todo.wip = true;
+    }
+
+    console.log(todo.wip);
+
 		todoStorage.put(todos);
 	};
 
