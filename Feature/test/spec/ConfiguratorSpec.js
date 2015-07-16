@@ -60,6 +60,6 @@ describe('Configurator', function () {
             expect(currentConfig.trim).toEqual('cloth');
 
             stateEngine.getCurrent.restore();
-        })
+        });
     });
 });
