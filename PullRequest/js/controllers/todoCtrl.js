@@ -1,6 +1,6 @@
 'use strict';
 
-todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, todoStorage) {
+todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, todoStorage, $interval) {
 	var todos = $scope.todos = todoStorage.get();
 
 	$scope.newTodo = '';
@@ -12,6 +12,17 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
 	}
 
 	$scope.location = $location;
+  
+  $interval(function () {
+    var timeElapsed;
+    var timeDuration = 1000;
+    var currentTime = new Date().getTime();
+    
+    todos.forEach(function (todo) {
+      timeElapsed = currentTime - todo.dateCreated;
+      todo.backgroundColour = '#FF' + ((255 - Math.floor(timeElapsed / timeDuration)).toString(16)) + ((255 - Math.floor(timeElapsed / timeDuration)).toString(16));
+    });
+  }, 100);
 
 	$scope.$watch('location.path()', function (path) {
 		$scope.statusFilter = { 
@@ -34,7 +45,9 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $filter, tod
 		todos.push({
 			title: newTodo,
       wip: false,
-			completed: false
+			completed: false,
+      dateCreated: new Date().getTime(),
+      backgroundColour: '#ffffff'
 		});
 		todoStorage.put(todos);
 

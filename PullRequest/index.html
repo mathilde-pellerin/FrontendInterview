@@ -21,7 +21,7 @@
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list">
 					<li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-						<div class="view" ng-class="{wip: todo.wip}">
+						<div class="view" ng-class="{wip: todo.wip}" style="background-color: {{todo.backgroundColour}}">
 							<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCompleted(todo)">
 							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
               <button class="button-wip" ng-click="toggleWipOnTodo(todo)">WIP</button>
