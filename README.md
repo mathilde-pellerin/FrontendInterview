@@ -1,6 +1,9 @@
 # Front-end Interview
 Resources for Burrows Front-end team in Interviews.
 
+## Pull Request
+Code reading test.
+
 ## Feature
 Code writing test for a basic configurator.  
 
