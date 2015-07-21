@@ -16,4 +16,4 @@ Code writing test for a basic configurator.
 * Run ```karma start``` you should have 24 passing tests *(at time of writing)*.
 
 ## Front-end Quiz
-KGZ1bmN0aW9uICgpIHt3aW5kb3cuY29uc29sZVsnbG9nJ10oWydhSFIwJywgJ0RvdkwyUmhkbWxrJywgJzJoaGNtbG0nXS5jb25jYXQoWydaaTVqYjIwdicsICdYVnBlaTg9J10pLmpvaW4oJ2MnKSk7fSgpKTs=
+ZXZhbCgiY29uc29sZS5sb2coYXRvYihbJ2FIUjAnLCAnRG92TDJSaGRtbGsnXS5jb25jYXQoWycyaGgnLCAnbWxtWmk1amIyMHYnLCAnWFZwZWk4PSddKS5qb2luKCdjJykpKSIpOw==
