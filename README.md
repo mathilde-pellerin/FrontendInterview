@@ -5,15 +5,15 @@ Resources for Burrows Front-end team in Interviews.
 Code reading test.
 
 ## Feature
-Code writing test for a basic configurator.  
+Code writing test for a basic configurator.
 
-**Tooling:**  
+**Tooling:**
 * Karma
-* Jasmine  
+* Jasmine
 
-**Running:**  
+**Running:**
 * ```cd`` into your project DIR and run ```npm install```.
-* Run ```karma start``` you should have 24 passing tests *(at time of writing)*.
+* Run ```./node_modules/karma/bin/karma start``` you should have 24 passing tests *(at time of writing)*.
 
 ## Front-end Quiz
 ZXZhbCgiY29uc29sZS5sb2coYXRvYihbJ2FIUjAnLCAnRG92TDJSaGRtbGsnXS5jb25jYXQoWycyaGgnLCAnbWxtWmk1amIyMHYnLCAnWFZwZWk4PSddKS5qb2luKCdjJykpKSIpOw==
