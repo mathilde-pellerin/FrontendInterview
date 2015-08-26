@@ -32,6 +32,5 @@ module.exports = function (config) {
         captureTimeout: 6000,
 
         singleRun: false
-
     });
 };
