@@ -26,7 +26,7 @@
           id: 'blue',
           title: 'Sapphire Blue',
           mustExclude: [
-            {grade: 'wag'}
+            {bodyStyle: 'wag'}
           ]
         },
         white: {
