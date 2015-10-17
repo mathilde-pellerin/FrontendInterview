@@ -8,6 +8,7 @@ describe('App', function () {
     bur.init();
 
     expect(bur.app).toBeDefined();
+    expect(bur.app.queryEngine instanceof bur.ConfigurationBasicQuery).toBe(true);
   });
 
   it('should default to en-gb if there is not a matching config', function () {
@@ -15,5 +16,14 @@ describe('App', function () {
     bur.init();
 
     expect(bur.app).toBeDefined();
+    expect(bur.app.queryEngine instanceof bur.ConfigurationBasicQuery).toBe(true);
+  });
+
+  it('should manage de-de configuration', function(){
+    bur.settings.locale = 'de-de';
+    bur.init();
+
+    expect(bur.app).toBeDefined();
+    expect(bur.app.queryEngine instanceof bur.ConfigurationBasicQueryGerman).toBe(true);
   });
 });

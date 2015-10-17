@@ -6,6 +6,10 @@
           'en-gb': {
             QueryEngine: bur.ConfigurationBasicQuery,
             StateEngine: bur.ConfigurationState
+          },
+          'de-de': {
+            QueryEngine: bur.ConfigurationBasicQueryGerman,
+            StateEngine: bur.ConfigurationState
           }
         },
         localeConfig = config[bur.settings.locale] || config[DEFAULT_LOCALE];

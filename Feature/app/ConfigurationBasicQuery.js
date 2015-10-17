@@ -33,26 +33,6 @@ bur.ConfigurationBasicQuery = (function () {
     return matchingVehicleObj;
   }
 
-  function getIndexOfMsc(mscStr, vehicles) {
-    var i,
-        numberOfVehicles = vehicles.length;
-
-    for (i = 0; i < numberOfVehicles; i += 1) {
-      if (mscStr === vehicles[i].msc) {
-        return i;
-      }
-    }
-  }
-
-  function getVehiclesToBeSearched(vehicles, configurationObj, isAllowed) {
-    var numberOfVehicles = vehicles.length,
-        clonedVehicles = vehicles.slice(0),
-        startingIndex = (isAllowed) ? getIndexOfMsc(configurationObj.msc, clonedVehicles) : 0,
-        startingVehicles = clonedVehicles.splice(startingIndex, numberOfVehicles - startingIndex);
-
-    return startingVehicles.concat(clonedVehicles);
-  }
-
   function isConfigurationAllowed(newValueId, typeId, configurationObj, vehicleData){
     var i,
         excludeProperty,
@@ -72,6 +52,26 @@ bur.ConfigurationBasicQuery = (function () {
      
     return configurationIsAllowed;
   }
+
+  ConfigurationBasicQuery.prototype.getIndexOfMsc = function(mscStr, vehicles) {
+    var i,
+        numberOfVehicles = vehicles.length;
+
+    for (i = 0; i < numberOfVehicles; i += 1) {
+      if (mscStr === vehicles[i].msc) {
+        return i;
+      }
+    }
+  };
+
+  ConfigurationBasicQuery.prototype.getVehiclesToBeSearched = function (vehicles, configurationObj, isAllowed) {
+    var numberOfVehicles = vehicles.length,
+        clonedVehicles = vehicles.slice(0),
+        startingIndex = (isAllowed) ? this.getIndexOfMsc(configurationObj.msc, clonedVehicles) : 0,
+        startingVehicles = clonedVehicles.splice(startingIndex, numberOfVehicles - startingIndex);
+
+    return startingVehicles.concat(clonedVehicles);
+  };
 
   ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
     return this.vehicleData.mscs[0];
@@ -93,7 +93,7 @@ bur.ConfigurationBasicQuery = (function () {
     var i,
         matchingVehicleObj,
         isAllowed = isConfigurationAllowed(newValueId, typeId, configurationObj, this.vehicleData),
-        sortedVehicles = getVehiclesToBeSearched(this.vehicleData.mscs, configurationObj, isAllowed),
+        sortedVehicles = this.getVehiclesToBeSearched(this.vehicleData.mscs, configurationObj, isAllowed),
         numberOfVehicles = sortedVehicles.length;
 
     for (i = 0; i < numberOfVehicles; i += 1) {
