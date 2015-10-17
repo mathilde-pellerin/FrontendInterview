@@ -36,20 +36,20 @@ describe('ConfigurationBasicQuery', function () {
       expect(queryEngine.getInitialConfiguration().msc).toEqual('111');
     });
 
-    it('should return the a clone of vehicle 112 when querying a vehicle with grade mid', function () {
+    it('should return a clone of vehicle 112 when querying a vehicle with grade mid', function () {
       var newConfig = queryEngine.getConfigurationWith('mid', 'grade', testHelpers.vehicle.mscs[0]);
 
       expect(testHelpers.vehicle.mscs[1]).not.toBe(newConfig);
       expect(newConfig.msc).toEqual('112');
     });
 
-    it('should return the a clone of vehicle 114 when querying a vehicle with grade sport', function () {
+    it('should return a clone of vehicle 114 when querying a vehicle with grade sport', function () {
       var newConfig = queryEngine.getConfigurationWith('sport', 'grade', testHelpers.vehicle.mscs[0]);
 
       expect(newConfig.msc).toEqual('114');
     });
 
-    it('should return the a clone of vehicle 111 with color blue querying a vehicle with color blue', function () {
+    it('should return a clone of vehicle 111 with color blue querying a vehicle with color blue', function () {
       var newColor = 'blue',
           newConfig = queryEngine.getConfigurationWith(newColor, 'color', testHelpers.vehicle.mscs[0]);
 
@@ -57,24 +57,24 @@ describe('ConfigurationBasicQuery', function () {
       expect(newConfig.color).toEqual(newColor);
     });
 
-    it('should return the a clone of vehicle 111 with color blue querying a vehicle with color blue', function () {
-      var newColor = 'blue',
-          newConfig = queryEngine.getConfigurationWith(newColor, 'color', testHelpers.vehicle.mscs[0]);
-
-      expect(newConfig.msc).toEqual('111');
-      expect(newConfig.color).toEqual(newColor);
-    });
-
-    it('should return the a clone of vehicle 114 querying a vehicle with grade sport from msc 222', function () {
+    it('should return a clone of vehicle 114 querying a vehicle with grade sport from msc 222', function () {
       var newConfig = queryEngine.getConfigurationWith('sport', 'grade', testHelpers.vehicle.mscs[8]);
 
       expect(newConfig.msc).toEqual('114');
     });
 
-    it('should return the a clone of vehicle 122 querying a vehicle with grade high from msc 121', function () {
+    it('should return a clone of vehicle 122 querying a vehicle with grade high from msc 121', function () {
       var newConfig = queryEngine.getConfigurationWith('high', 'grade', testHelpers.vehicle.mscs[4]);
 
       expect(newConfig.msc).toEqual('122');
+    });
+
+    it('should return a clone of vehicle 111 with color blue querying a vehicle with color blue and configuration matching msc 221', function(){
+      var newColor = 'blue',
+          newConfig = queryEngine.getConfigurationWith(newColor, 'color', testHelpers.vehicle.mscs[7]);
+
+      expect(newConfig.msc).toEqual('111');
+      expect(newConfig.color).toEqual(newColor);
     });
   });
 });

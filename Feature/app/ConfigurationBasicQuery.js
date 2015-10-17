@@ -7,6 +7,11 @@ bur.ConfigurationBasicQuery = (function () {
     engine: true
   };
 
+  var VEHICLE_ALLOWED_PROPERTIES = {
+    color: 'colors',
+    trim: 'trims'
+  };
+
   function ConfigurationBasicQuery(vehicleData) {
     this.vehicleData = vehicleData;
   }
@@ -39,13 +44,33 @@ bur.ConfigurationBasicQuery = (function () {
     }
   }
 
-  function getVehiclesToBeSearched(vehicles, configurationObj) {
+  function getVehiclesToBeSearched(vehicles, configurationObj, isAllowed) {
     var numberOfVehicles = vehicles.length,
         clonedVehicles = vehicles.slice(0),
-        startingIndex = getIndexOfMsc(configurationObj.msc, clonedVehicles),
+        startingIndex = (isAllowed) ? getIndexOfMsc(configurationObj.msc, clonedVehicles) : 0,
         startingVehicles = clonedVehicles.splice(startingIndex, numberOfVehicles - startingIndex);
 
     return startingVehicles.concat(clonedVehicles);
+  }
+
+  function isConfigurationAllowed(newValueId, typeId, configurationObj, vehicleData){
+    var i,
+        excludeProperty,
+        excludedKey,
+        excludeProperties = (VEHICLE_ALLOWED_PROPERTIES[typeId]) ? vehicleData[VEHICLE_ALLOWED_PROPERTIES[typeId]][newValueId].mustExclude : [],
+        configurationIsAllowed = true;
+
+    for(i = 0; i < excludeProperties.length; i += 1){
+      excludeProperty = excludeProperties[i];
+      excludedKey = Object.keys(excludeProperty)[0];
+      
+      if(configurationObj.hasOwnProperty(excludedKey) && configurationObj[excludedKey] === excludeProperty[excludedKey]){
+        configurationIsAllowed = false;
+        break;
+      }
+    }
+     
+    return configurationIsAllowed;
   }
 
   ConfigurationBasicQuery.prototype.getInitialConfiguration = function () {
@@ -67,7 +92,8 @@ bur.ConfigurationBasicQuery = (function () {
   ConfigurationBasicQuery.prototype.getConfigurationWith = function (newValueId, typeId, configurationObj) {
     var i,
         matchingVehicleObj,
-        sortedVehicles = getVehiclesToBeSearched(this.vehicleData.mscs, configurationObj),
+        isAllowed = isConfigurationAllowed(newValueId, typeId, configurationObj, this.vehicleData),
+        sortedVehicles = getVehiclesToBeSearched(this.vehicleData.mscs, configurationObj, isAllowed),
         numberOfVehicles = sortedVehicles.length;
 
     for (i = 0; i < numberOfVehicles; i += 1) {
